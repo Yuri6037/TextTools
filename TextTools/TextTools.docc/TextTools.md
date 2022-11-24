@@ -1,13 +1,13 @@
 # ``TextTools``
 
-<!--@START_MENU_TOKEN@-->Summary<!--@END_MENU_TOKEN@-->
+Framework to work with text files.
 
 ## Overview
 
-<!--@START_MENU_TOKEN@-->Text<!--@END_MENU_TOKEN@-->
+The framework provides two main utilities to help working with files efficiently in Objective-C.
+
+The classes are also Swift-binding friendly.
 
 ## Topics
 
-### <!--@START_MENU_TOKEN@-->Group<!--@END_MENU_TOKEN@-->
-
-- <!--@START_MENU_TOKEN@-->``Symbol``<!--@END_MENU_TOKEN@-->
+- ``BufferedTextFile`` provides a way to efficiently read a file line by line.

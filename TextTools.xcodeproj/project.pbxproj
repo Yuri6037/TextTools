@@ -11,6 +11,8 @@
 		DA60F6A4293003DC0017D656 /* TextTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA60F699293003DC0017D656 /* TextTools.framework */; };
 		DA60F6A9293003DC0017D656 /* TextToolsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA60F6A8293003DC0017D656 /* TextToolsTests.m */; };
 		DA60F6AA293003DC0017D656 /* TextTools.h in Headers */ = {isa = PBXBuildFile; fileRef = DA60F69C293003DC0017D656 /* TextTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DA60F6B5293004AA0017D656 /* BufferedTextFile.m in Sources */ = {isa = PBXBuildFile; fileRef = DA60F6B3293004AA0017D656 /* BufferedTextFile.m */; };
+		DA60F6B6293004AA0017D656 /* BufferedTextFile.h in Headers */ = {isa = PBXBuildFile; fileRef = DA60F6B4293004AA0017D656 /* BufferedTextFile.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +31,8 @@
 		DA60F69D293003DC0017D656 /* TextTools.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = TextTools.docc; sourceTree = "<group>"; };
 		DA60F6A3293003DC0017D656 /* TextToolsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TextToolsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA60F6A8293003DC0017D656 /* TextToolsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextToolsTests.m; sourceTree = "<group>"; };
+		DA60F6B3293004AA0017D656 /* BufferedTextFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BufferedTextFile.m; sourceTree = "<group>"; };
+		DA60F6B4293004AA0017D656 /* BufferedTextFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BufferedTextFile.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,8 @@
 		DA60F69B293003DC0017D656 /* TextTools */ = {
 			isa = PBXGroup;
 			children = (
+				DA60F6B4293004AA0017D656 /* BufferedTextFile.h */,
+				DA60F6B3293004AA0017D656 /* BufferedTextFile.m */,
 				DA60F69C293003DC0017D656 /* TextTools.h */,
 				DA60F69D293003DC0017D656 /* TextTools.docc */,
 			);
@@ -92,6 +98,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA60F6B6293004AA0017D656 /* BufferedTextFile.h in Headers */,
 				DA60F6AA293003DC0017D656 /* TextTools.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -194,6 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA60F69E293003DC0017D656 /* TextTools.docc in Sources */,
+				DA60F6B5293004AA0017D656 /* BufferedTextFile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
