@@ -14,6 +14,8 @@
 		DA60F6B5293004AA0017D656 /* BufferedTextFile.m in Sources */ = {isa = PBXBuildFile; fileRef = DA60F6B3293004AA0017D656 /* BufferedTextFile.m */; };
 		DA60F6B6293004AA0017D656 /* BufferedTextFile.h in Headers */ = {isa = PBXBuildFile; fileRef = DA60F6B4293004AA0017D656 /* BufferedTextFile.h */; };
 		DA60F6B8293005E40017D656 /* BufferedTextFileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA60F6B7293005E40017D656 /* BufferedTextFileTests.m */; };
+		DA60F6BB2930066F0017D656 /* CSVParser.h in Headers */ = {isa = PBXBuildFile; fileRef = DA60F6B92930066F0017D656 /* CSVParser.h */; };
+		DA60F6BC2930066F0017D656 /* CSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA60F6BA2930066F0017D656 /* CSVParser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +37,8 @@
 		DA60F6B3293004AA0017D656 /* BufferedTextFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BufferedTextFile.m; sourceTree = "<group>"; };
 		DA60F6B4293004AA0017D656 /* BufferedTextFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BufferedTextFile.h; sourceTree = "<group>"; };
 		DA60F6B7293005E40017D656 /* BufferedTextFileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BufferedTextFileTests.m; sourceTree = "<group>"; };
+		DA60F6B92930066F0017D656 /* CSVParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSVParser.h; sourceTree = "<group>"; };
+		DA60F6BA2930066F0017D656 /* CSVParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSVParser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,9 +81,11 @@
 		DA60F69B293003DC0017D656 /* TextTools */ = {
 			isa = PBXGroup;
 			children = (
+				DA60F69C293003DC0017D656 /* TextTools.h */,
 				DA60F6B4293004AA0017D656 /* BufferedTextFile.h */,
 				DA60F6B3293004AA0017D656 /* BufferedTextFile.m */,
-				DA60F69C293003DC0017D656 /* TextTools.h */,
+				DA60F6B92930066F0017D656 /* CSVParser.h */,
+				DA60F6BA2930066F0017D656 /* CSVParser.m */,
 				DA60F69D293003DC0017D656 /* TextTools.docc */,
 			);
 			path = TextTools;
@@ -102,6 +108,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA60F6B6293004AA0017D656 /* BufferedTextFile.h in Headers */,
+				DA60F6BB2930066F0017D656 /* CSVParser.h in Headers */,
 				DA60F6AA293003DC0017D656 /* TextTools.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,6 +211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA60F69E293003DC0017D656 /* TextTools.docc in Sources */,
+				DA60F6BC2930066F0017D656 /* CSVParser.m in Sources */,
 				DA60F6B5293004AA0017D656 /* BufferedTextFile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
