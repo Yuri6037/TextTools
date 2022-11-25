@@ -11,9 +11,9 @@
 		DA60F6A4293003DC0017D656 /* TextTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA60F699293003DC0017D656 /* TextTools.framework */; };
 		DA60F6AA293003DC0017D656 /* TextTools.h in Headers */ = {isa = PBXBuildFile; fileRef = DA60F69C293003DC0017D656 /* TextTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DA60F6B5293004AA0017D656 /* BufferedTextFile.m in Sources */ = {isa = PBXBuildFile; fileRef = DA60F6B3293004AA0017D656 /* BufferedTextFile.m */; };
-		DA60F6B6293004AA0017D656 /* BufferedTextFile.h in Headers */ = {isa = PBXBuildFile; fileRef = DA60F6B4293004AA0017D656 /* BufferedTextFile.h */; };
+		DA60F6B6293004AA0017D656 /* BufferedTextFile.h in Headers */ = {isa = PBXBuildFile; fileRef = DA60F6B4293004AA0017D656 /* BufferedTextFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DA60F6B8293005E40017D656 /* BufferedTextFileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA60F6B7293005E40017D656 /* BufferedTextFileTests.m */; };
-		DA60F6BB2930066F0017D656 /* CSVParser.h in Headers */ = {isa = PBXBuildFile; fileRef = DA60F6B92930066F0017D656 /* CSVParser.h */; };
+		DA60F6BB2930066F0017D656 /* CSVParser.h in Headers */ = {isa = PBXBuildFile; fileRef = DA60F6B92930066F0017D656 /* CSVParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DA60F6BC2930066F0017D656 /* CSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA60F6BA2930066F0017D656 /* CSVParser.m */; };
 		DACD6FB92931313E00CD567C /* CSVParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DACD6FB82931313E00CD567C /* CSVParserTests.m */; };
 /* End PBXBuildFile section */
