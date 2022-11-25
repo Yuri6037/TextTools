@@ -25,7 +25,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NSArray<NSString *> * CSVRow;
+
 @interface CSVParser : NSObject
+
+- (instancetype)init:(char)delimiter;
+
+- (CSVRow)parseRow:(NSString *)row;
 
 @end
 

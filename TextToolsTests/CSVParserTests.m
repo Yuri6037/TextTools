@@ -22,13 +22,13 @@
 // IN THE SOFTWARE.
 
 #import <XCTest/XCTest.h>
-#import "BufferedTextFile.h"
+#import "CSVParser.h"
 
-@interface BufferedTextFileTests : XCTestCase
+@interface CSVParserTests : XCTestCase
 
 @end
 
-@implementation BufferedTextFileTests
+@implementation CSVParserTests
 
 - (void)setUp {
 }
@@ -36,20 +36,20 @@
 - (void)tearDown {
 }
 
-- (void)testExample {
-    NSError *err;
-    NSString *line;
-    BufferedTextFile *file = [[BufferedTextFile alloc] init:@"/etc/paths" withError:&err];
-    XCTAssertNotNil(file);
-    NSMutableString *str = [[NSMutableString alloc] init];
-    while ((line = [file readLine:&err])) {
-        XCTAssertGreaterThan([line length], 0);
-        [str appendString:line];
-        [str appendString:@"\n"];
-    }
-    NSString *expected = [NSString stringWithContentsOfFile:@"/etc/paths" encoding:NSUTF8StringEncoding error:&err];
-    XCTAssertNotNil(str);
-    XCTAssertEqualObjects(str, expected);
+- (void)testBasic {
+    CSVParser *parser = [[CSVParser alloc] init:','];
+    CSVRow array = [parser parseRow:@"number,42,\"this,is,a,test with \"\"\""];
+    XCTAssertEqual(array.count, 3);
+    XCTAssertEqualObjects([array objectAtIndex:0], @"number");
+    XCTAssertEqualObjects([array objectAtIndex:1], @"42");
+    XCTAssertEqualObjects([array objectAtIndex:2], @"this,is,a,test with \"");
+}
+
+- (void)testMoreQuotes {
+    CSVParser *parser = [[CSVParser alloc] init:','];
+    CSVRow array = [parser parseRow:@"\"test, \"\", test\"\"\""];
+    XCTAssertEqual(array.count, 1);
+    XCTAssertEqualObjects([array objectAtIndex:0], @"test, \", test\"");
 }
 
 @end

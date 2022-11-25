@@ -23,6 +23,41 @@
 
 #import "CSVParser.h"
 
-@implementation CSVParser
+@implementation CSVParser {
+    char _delimiter;
+}
+
+- (instancetype)init:(char)delimiter {
+    _delimiter = delimiter;
+    return self;
+}
+
+- (CSVRow)parseRow:(NSString *)row {
+    bool quote = false;
+    NSMutableArray<NSString *> *array = [[NSMutableArray alloc] init];
+    NSMutableString *curStr = [[NSMutableString alloc] init];
+    const char *str = [row cStringUsingEncoding:NSUTF8StringEncoding];
+    NSUInteger i = 0;
+    while (str[i]) {
+        if (str[i] == '"') {
+            if (i + 1 < row.length && str[i + 1] == '"') {
+                //Double double-quotes
+                [curStr appendFormat:@"\""];
+                ++i;
+            } else
+                quote = !quote;
+        } else if (str[i] == _delimiter && !quote) {
+            // We encountered a separator so create a new string.
+            [array addObject:curStr];
+            curStr = [[NSMutableString alloc] init];
+        } else {
+            //Just append the character to the array
+            [curStr appendFormat:@"%c", str[i]];
+        }
+        ++i;
+    }
+    [array addObject:curStr];
+    return array;
+}
 
 @end

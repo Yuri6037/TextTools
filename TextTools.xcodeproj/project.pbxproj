@@ -16,6 +16,7 @@
 		DA60F6B8293005E40017D656 /* BufferedTextFileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA60F6B7293005E40017D656 /* BufferedTextFileTests.m */; };
 		DA60F6BB2930066F0017D656 /* CSVParser.h in Headers */ = {isa = PBXBuildFile; fileRef = DA60F6B92930066F0017D656 /* CSVParser.h */; };
 		DA60F6BC2930066F0017D656 /* CSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA60F6BA2930066F0017D656 /* CSVParser.m */; };
+		DACD6FB92931313E00CD567C /* CSVParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DACD6FB82931313E00CD567C /* CSVParserTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 		DA60F6B7293005E40017D656 /* BufferedTextFileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BufferedTextFileTests.m; sourceTree = "<group>"; };
 		DA60F6B92930066F0017D656 /* CSVParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSVParser.h; sourceTree = "<group>"; };
 		DA60F6BA2930066F0017D656 /* CSVParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSVParser.m; sourceTree = "<group>"; };
+		DACD6FB82931313E00CD567C /* CSVParserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSVParserTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				DA60F6A8293003DC0017D656 /* TextToolsTests.m */,
 				DA60F6B7293005E40017D656 /* BufferedTextFileTests.m */,
+				DACD6FB82931313E00CD567C /* CSVParserTests.m */,
 			);
 			path = TextToolsTests;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DACD6FB92931313E00CD567C /* CSVParserTests.m in Sources */,
 				DA60F6A9293003DC0017D656 /* TextToolsTests.m in Sources */,
 				DA60F6B8293005E40017D656 /* BufferedTextFileTests.m in Sources */,
 			);
