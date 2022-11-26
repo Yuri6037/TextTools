@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BufferedTextFile : NSObject
 
-- (BufferedTextFile * _Nullable)init:(NSString *)file withError:(NSError **)error;
+- (BufferedTextFile * _Nullable)init:(NSString *)file bufferSize:(NSUInteger)size withError:(NSError **)error;
 
 - (NSString * _Nullable)readLine:(NSError **)error;
 

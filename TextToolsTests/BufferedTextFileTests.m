@@ -36,10 +36,26 @@
 - (void)tearDown {
 }
 
-- (void)testExample {
+- (void)testSmallBuffer {
     NSError *err;
     NSString *line;
-    BufferedTextFile *file = [[BufferedTextFile alloc] init:@"/etc/paths" withError:&err];
+    BufferedTextFile *file = [[BufferedTextFile alloc] init:@"/etc/paths" bufferSize:8 withError:&err];
+    XCTAssertNotNil(file);
+    NSMutableString *str = [[NSMutableString alloc] init];
+    while ((line = [file readLine:&err])) {
+        XCTAssertGreaterThan([line length], 0);
+        [str appendString:line];
+        [str appendString:@"\n"];
+    }
+    NSString *expected = [NSString stringWithContentsOfFile:@"/etc/paths" encoding:NSUTF8StringEncoding error:&err];
+    XCTAssertNotNil(str);
+    XCTAssertEqualObjects(str, expected);
+}
+
+- (void)testLargeBuffer {
+    NSError *err;
+    NSString *line;
+    BufferedTextFile *file = [[BufferedTextFile alloc] init:@"/etc/paths" bufferSize:8192 withError:&err];
     XCTAssertNotNil(file);
     NSMutableString *str = [[NSMutableString alloc] init];
     while ((line = [file readLine:&err])) {

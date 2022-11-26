@@ -25,8 +25,6 @@
 
 #import "BufferedTextFile.h"
 
-#define BUF_SIZE 8
-
 #define NSBufferedTextFileErrorDomain @"com.github.Yuri6037.TextTools.BufferedTextFile"
 
 @interface BufferedTextFile()
@@ -36,26 +34,27 @@
 @end
 
 @implementation BufferedTextFile {
-    char _buffer[BUF_SIZE];
+    NSMutableData *_buffer;
     ssize_t _cursor;
     ssize_t _len;
     int _fd;
 }
 
-- (BufferedTextFile * _Nullable)init:(NSString *)file withError:(NSError **)error {
+- (BufferedTextFile * _Nullable)init:(NSString *)file bufferSize:(NSUInteger)size withError:(NSError **)error {
     const char *cfile = [file cStringUsingEncoding:NSUTF8StringEncoding];
     _fd = open(cfile, O_RDONLY);
     if (_fd == -1) {
         *error = [NSError errorWithDomain:NSBufferedTextFileErrorDomain code:errno userInfo:nil];
         return nil;
     }
+    _buffer = [NSMutableData dataWithLength:size];
     _cursor = 0;
     _len = 0;
     return self;
 }
 
 - (BOOL)readBuffer:(NSError **)error {
-    ssize_t res = read(_fd, _buffer, BUF_SIZE);
+    ssize_t res = read(_fd, _buffer.mutableBytes, _buffer.length);
     if (res == -1) {
         *error = [NSError errorWithDomain:NSBufferedTextFileErrorDomain code:errno userInfo:nil];
         return NO;
@@ -69,32 +68,31 @@
     NSString *line = nil;
     if (_cursor == _len && ![self readBuffer:error])
         return nil;
+    char *buffer = _buffer.mutableBytes;
     ssize_t i = _cursor;
-    while (_buffer[i] != '\n' && _len > 0) {
+    while (buffer[i] != '\n' && _len > 0) {
         i += 1;
         if (i >= _len) {
-            if (line == nil) {
+            NSUInteger len = i - _cursor;
+            if (line == nil)
                 //allocate a new line
-                NSUInteger len = i - _cursor;
-                line = [[NSString alloc] initWithBytes:_buffer + _cursor length:len encoding:NSUTF8StringEncoding];
-            } else {
+                line = [[NSString alloc] initWithBytes:buffer + _cursor length:len encoding:NSUTF8StringEncoding];
+            else
                 //append to the line
-                NSUInteger len = i - _cursor;
-                line = [line stringByAppendingString:[[NSString alloc] initWithBytes:_buffer + _cursor length:len encoding:NSUTF8StringEncoding]];
-            }
+                line = [line stringByAppendingString:[[NSString alloc] initWithBytes:buffer + _cursor length:len encoding:NSUTF8StringEncoding]];
             if (![self readBuffer:error])
                 return nil;
             i = _cursor;
         }
     }
     if (i > _cursor) {
-        if (line == nil) {
+        NSUInteger len = i - _cursor;
+        if (line == nil)
             //allocate a new line
-            line = [[NSString alloc] initWithBytes:_buffer + _cursor length:i encoding:NSUTF8StringEncoding];
-        } else {
+            line = [[NSString alloc] initWithBytes:buffer + _cursor length:len encoding:NSUTF8StringEncoding];
+        else
             //append to the line
-            line = [line stringByAppendingString:[[NSString alloc] initWithBytes:_buffer + _cursor length:i encoding:NSUTF8StringEncoding]];
-        }
+            line = [line stringByAppendingString:[[NSString alloc] initWithBytes:buffer + _cursor length:i encoding:NSUTF8StringEncoding]];
         _cursor = i + 1; // skip the '\n'
     }
     return line;
