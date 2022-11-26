@@ -52,4 +52,23 @@
     XCTAssertEqualObjects([array objectAtIndex:0], @"test, \", test\"");
 }
 
+- (void)testFrench {
+    CSVParser *parser = [[CSVParser alloc] init:','];
+    CSVRow array = [parser parseRow:@"accents,éè,ëê"];
+    XCTAssertEqual(array.count, 3);
+    XCTAssertEqualObjects([array objectAtIndex:0], @"accents");
+    XCTAssertEqualObjects([array objectAtIndex:1], @"éè");
+    XCTAssertEqualObjects([array objectAtIndex:2], @"ëê");
+}
+
+- (void)testChinese {
+    CSVParser *parser = [[CSVParser alloc] init:','];
+    CSVRow array = [parser parseRow:@"你好,我是,清华大学,的留学生"];
+    XCTAssertEqual(array.count, 4);
+    XCTAssertEqualObjects([array objectAtIndex:0], @"你好");
+    XCTAssertEqualObjects([array objectAtIndex:1], @"我是");
+    XCTAssertEqualObjects([array objectAtIndex:2], @"清华大学");
+    XCTAssertEqualObjects([array objectAtIndex:3], @"的留学生");
+}
+
 @end
