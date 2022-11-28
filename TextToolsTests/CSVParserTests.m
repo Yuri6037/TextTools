@@ -71,4 +71,12 @@
     XCTAssertEqualObjects([array objectAtIndex:3], @"的留学生");
 }
 
+- (void)testEmpty {
+    CSVParser *parser = [[CSVParser alloc] init:','];
+    CSVRow array = [parser parseRow:@"test,"];
+    XCTAssertEqual(array.count, 2);
+    XCTAssertEqualObjects([array objectAtIndex:0], @"test");
+    XCTAssertEqualObjects([array objectAtIndex:1], @"");
+}
+
 @end
