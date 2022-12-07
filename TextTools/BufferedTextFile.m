@@ -66,7 +66,7 @@
 
 - (NSString * _Nullable)readLine:(NSError **)error {
     NSString *line = nil;
-    if (_cursor == _len && ![self readBuffer:error])
+    if (_cursor >= _len && ![self readBuffer:error])
         return nil;
     char *buffer = _buffer.mutableBytes;
     ssize_t i = _cursor;
@@ -95,6 +95,8 @@
             line = [line stringByAppendingString:[[NSString alloc] initWithBytes:buffer + _cursor length:i encoding:NSUTF8StringEncoding]];
         _cursor = i + 1; // skip the '\n'
     }
+    if (buffer[_cursor] == '\n')
+        _cursor += 1;
     return line;
 }
 

@@ -68,4 +68,20 @@
     XCTAssertEqualObjects(str, expected);
 }
 
+- (void)testExactBuffer {
+    NSError *err;
+    NSString *line;
+    BufferedTextFile *file = [[BufferedTextFile alloc] init:@"/etc/paths" bufferSize:14 withError:&err];
+    XCTAssertNotNil(file);
+    NSMutableString *str = [[NSMutableString alloc] init];
+    while ((line = [file readLine:&err])) {
+        XCTAssertGreaterThan([line length], 0);
+        [str appendString:line];
+        [str appendString:@"\n"];
+    }
+    NSString *expected = [NSString stringWithContentsOfFile:@"/etc/paths" encoding:NSUTF8StringEncoding error:&err];
+    XCTAssertNotNil(str);
+    XCTAssertEqualObjects(str, expected);
+}
+
 @end
