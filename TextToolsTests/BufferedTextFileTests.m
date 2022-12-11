@@ -79,6 +79,7 @@
         [str appendString:line];
         [str appendString:@"\n"];
     }
+    [file close];
     NSString *expected = [NSString stringWithContentsOfFile:@"/etc/paths" encoding:NSUTF8StringEncoding error:&err];
     XCTAssertNotNil(str);
     XCTAssertEqualObjects(str, expected);

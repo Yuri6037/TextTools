@@ -22,18 +22,15 @@
 // IN THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import <TextTools/BufferedReader.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BufferedTextFile : NSObject
+@interface BufferedTextFile : BufferedReader
 
 - (BufferedTextFile * _Nullable)init:(NSString *)file bufferSize:(NSUInteger)size withError:(NSError **)error;
 
 - (NSString * _Nullable)readLine:(NSError **)error;
-
-- (void)close;
-
-- (void)dealloc;
 
 @end
 
