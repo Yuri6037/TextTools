@@ -27,87 +27,23 @@
 
 #define NSBufferedTextFileErrorDomain @"com.github.Yuri6037.TextTools.BufferedTextFile"
 
-@interface BufferedTextFile()
-
-- (BOOL)readBuffer:(NSError **)error;
-
-@end
-
-@implementation BufferedTextFile {
-    NSMutableData *_buffer;
-    ssize_t _cursor;
-    ssize_t _len;
-    int _fd;
-}
+@implementation BufferedTextFile
 
 - (BufferedTextFile * _Nullable)init:(NSString *)file bufferSize:(NSUInteger)size withError:(NSError **)error {
     const char *cfile = [file cStringUsingEncoding:NSUTF8StringEncoding];
-    _fd = open(cfile, O_RDONLY);
-    if (_fd == -1) {
+    int fd = open(cfile, O_RDONLY);
+    if (fd == -1) {
         *error = [NSError errorWithDomain:NSBufferedTextFileErrorDomain code:errno userInfo:nil];
         return nil;
     }
-    _buffer = [NSMutableData dataWithLength:size];
-    _cursor = 0;
-    _len = 0;
-    return self;
-}
-
-- (BOOL)readBuffer:(NSError **)error {
-    ssize_t res = read(_fd, _buffer.mutableBytes, _buffer.length);
-    if (res == -1) {
-        *error = [NSError errorWithDomain:NSBufferedTextFileErrorDomain code:errno userInfo:nil];
-        return NO;
-    }
-    _cursor = 0;
-    _len = res;
-    return YES;
+    return [super initWithDescriptor:fd bufferSize:size error:error];
 }
 
 - (NSString * _Nullable)readLine:(NSError **)error {
-    NSString *line = nil;
-    if (_cursor >= _len && ![self readBuffer:error])
-        return nil;
-    char *buffer = _buffer.mutableBytes;
-    ssize_t i = _cursor;
-    while (buffer[i] != '\n' && _len > 0) {
-        i += 1;
-        if (i >= _len) {
-            NSUInteger len = i - _cursor;
-            if (line == nil)
-                //allocate a new line
-                line = [[NSString alloc] initWithBytes:buffer + _cursor length:len encoding:NSUTF8StringEncoding];
-            else
-                //append to the line
-                line = [line stringByAppendingString:[[NSString alloc] initWithBytes:buffer + _cursor length:len encoding:NSUTF8StringEncoding]];
-            if (![self readBuffer:error])
-                return nil;
-            i = _cursor;
-        }
-    }
-    if (i > _cursor) {
-        NSUInteger len = i - _cursor;
-        if (line == nil)
-            //allocate a new line
-            line = [[NSString alloc] initWithBytes:buffer + _cursor length:len encoding:NSUTF8StringEncoding];
-        else
-            //append to the line
-            line = [line stringByAppendingString:[[NSString alloc] initWithBytes:buffer + _cursor length:i encoding:NSUTF8StringEncoding]];
-        _cursor = i + 1; // skip the '\n'
-    }
-    if (buffer[_cursor] == '\n')
-        _cursor += 1;
-    return line;
-}
-
-- (void)close {
-    if (_fd != -1)
-        close(_fd);
-    _fd = -1;
-}
-
-- (void)dealloc {
-    [self close];
+    NSString *line = [super readLine];
+    if ([super readLineError] != nil)
+        *error = [super readLineError];
+    return  line;
 }
 
 @end
